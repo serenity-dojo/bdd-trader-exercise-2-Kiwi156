@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class WhenUpdatingAndDeletingAClient {
     @Before
     public void setupBaseUrl() {
-        RestAssured.baseURI = "http://localhost:9000/api";
+        RestAssured.baseURI = "https://bddtrader.herokuapp.com/api/";
     }
 
     @Test
@@ -24,6 +24,7 @@ public class WhenUpdatingAndDeletingAClient {
 
         // Then the client should no longer exist
         RestAssured.given()
+                .auth().basic("user", "password")
                 .get("/client/{id}", id)
                 .then()
                 .statusCode(404);

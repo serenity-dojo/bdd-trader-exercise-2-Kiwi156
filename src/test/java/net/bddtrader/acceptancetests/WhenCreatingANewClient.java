@@ -15,7 +15,7 @@ public class WhenCreatingANewClient {
 
     @Before
     public void setupBaseUrl() {
-        RestAssured.baseURI = "http://localhost:9000/api";
+        RestAssured.baseURI = "https://bddtrader.herokuapp.com/api/";
     }
 
     @Test
@@ -27,6 +27,7 @@ public class WhenCreatingANewClient {
         clientData.put("lastName","Scott");
 
         RestAssured.given()
+                .auth().basic("user", "password")
                 .contentType(ContentType.JSON)
                 .body(clientData)
                 .when()
